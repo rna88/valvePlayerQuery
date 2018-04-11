@@ -14,7 +14,7 @@ timeout = 0
 
 if len(sys.argv) < 5:
 	print("Usage: python valvePlayerQuery <gamedir> <minPlayers> <refreshRate> <retries>\n\n"
-	+"<gamedir>       the ID string of the game, found on https://steamdb.info under \"Additional Information\"\n"
+	+"<gamedir>       The ID string of the game, found by searching https://steamdb.info for the game, and looking under \"Information\"\n"
 	+"<minPlayers>    Minimum player count before we display notification\n"
 	+"<refreshRate>   Minutes before querying the master server again\n"
 	+"<retries>       Number of times to retry connecting to the master server on timeout")

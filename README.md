@@ -10,19 +10,21 @@ sudo pacman -S libnotify
 ```
 
 #### Running
-Basic usage: `python valvePlayerQuery <gamedir> <minPlayers> <refreshRate> <retries>`
+Basic usage: 
 
-<gamedir>       the ID string of the game, found on https://steamdb.info under "Additional Information"
-<minPlayers>    Minimum player count before we display notification
-<refreshRate>   Minutes before querying the master server again
-<retries>       Number of times to retry connecting to the master server on timeout
+`python valvePlayerQuery <gamedir> <minPlayers> <refreshRate> <retries>`
+
+`<gamedir>`       The ID string of the game, found by searching https://steamdb.info for the game, and looking under "Information"  
+`<minPlayers>`    Minimum player count before we display notification  
+`<refreshRate>`   Minutes before querying the master server again  
+`<retries>`       Number of times to retry connecting to the master server on timeout  
 
 Optionally you may place a small image called <gamedir>.png in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
 
 #### Example
 Demonstrating usage for fistful of frags:
 
-`setsid python valvePlayerQuery.py fof 20 10 3 >/dev/null 2>&1 &`
+`setsid python valvePlayerQuery.py fof 20 10 3 >/dev/null 2>&1`
 
-[python-valve]:(https://github.com/serverstf/python-valve)
-[libnotify]:(https://wiki.archlinux.org/index.php/Desktop_notifications#Libnotify)
+[python-valve]: (https://github.com/serverstf/python-valve)
+[libnotify]: (https://wiki.archlinux.org/index.php/Desktop_notifications#Libnotify)
