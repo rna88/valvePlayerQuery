@@ -3,11 +3,14 @@ This python script will show notifications of increasing online player count for
 
 ## Usage for Linux
 ### Dependencies
-You will need [python-valve], [libnotify], and of course the python 2 or 3 packages installed.
+You will specifically need [libnotify], [python-valve], and [psutil]. The other modules should come with a default python install:
 ```
+sudo pacman -S libnotify (use your distro's package manager)
 sudo pip install python-valve
-sudo pacman -S libnotify
+sudo pip install psutil
 ```
+## Usage for other OS's
+Everything besides the notification library is cross-platform. The notification lib could be replaced with pyQT to make it completely cross-platform, otherwise you'll have to settle for looking at the output in a terminal.
 
 ### Running
 Basic usage: 
@@ -22,7 +25,7 @@ Basic usage:
 Optionally you may place a small image called <gamedir>.png in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
 
 ### Example
-Demonstrating usage for fistful of frags:
+Demonstrating "daemonized" usage for Fistful of Frags:
 
 `setsid python valvePlayerQuery.py fof 20 10 3 >/dev/null 2>&1`
 
@@ -30,4 +33,5 @@ Demonstrating usage for fistful of frags:
 This repository is licensed under the [MIT License](LICENSE)
 
 [python-valve]: (https://github.com/serverstf/python-valve)
+[psutil]: (https://github.com/giampaolo/psutil)
 [libnotify]: (https://wiki.archlinux.org/index.php/Desktop_notifications#Libnotify)
