@@ -9,9 +9,6 @@ sudo pacman -S libnotify (use your distro's package manager)
 sudo pip install python-valve
 sudo pip install psutil
 ```
-## Usage for other OS's
-Everything besides the notification library is cross-platform. The notification lib could be replaced with pyQT to make it completely cross-platform, otherwise you'll have to settle for looking at the output in a terminal.
-
 ### Running
 Basic usage: 
 
@@ -28,6 +25,9 @@ Optionally you may place a small image called <gamedir>.png in the same location
 Demonstrating "daemonized" usage for Fistful of Frags:
 
 `setsid python valvePlayerQuery.py fof 20 10 3 >/dev/null 2>&1`
+
+## Usage for other OS's
+Everything besides the notification library is cross-platform. The notification lib could be replaced with pyQT to make it completely cross-platform, otherwise you'll have to settle for looking at the output in a terminal.
 
 ## License
 This repository is licensed under the [MIT License](LICENSE)
