@@ -1,17 +1,22 @@
-import subprocess
 import gi
 gi.require_version('Notify', '0.7')
 from gi.repository import Notify, GdkPixbuf
 import valve.source.master_server
 import time
-import socket
 import os
 import sys
+import psutil
+import re
 
-totalPlayers = 0
-lastPlayers = 0
-timeout = 0
-
+# Check if the game is running.
+def isRunning(game):
+	for process in psutil.process_iter():
+		for args in process.cmdline():
+			# Look for process with the gameDir in them  that are not this script.
+			if re.match(game, args, re.I) and sys.argv[0] not in process.cmdline():
+				return True
+	return False
+	
 if len(sys.argv) < 5:
 	print("Usage: python valvePlayerQuery <gamedir> <minPlayers> <refreshRate> <retries>\n\n"
 	+"<gamedir>       The ID string of the game, found by searching https://steamdb.info for the game, and looking under \"Information\"\n"
@@ -43,11 +48,12 @@ else:
 	notifyTimeout.set_icon_from_pixbuf(image)
 	notifyTimeout.set_image_from_pixbuf(image)
 
+totalPlayers = 0
+lastPlayers = 0
+timeout = 0
+
 while True:
-	# Check if the game is running, if it is don't bother displaying a notification.
-	playing = subprocess.call("ps -ef | grep "+gameDir+" | grep -vE '$$|"+sys.argv[0]+"'",stderr=subprocess.STDOUT,shell=True) 
-	
-	if playing == 1:
+	if not isRunning(gameDir):
 		msq = valve.source.master_server.MasterServerQuerier()
 		try:
 			for address in msq.find(region=[u"na", u"eu", u"sa", u"as",u"oc",u"af"], gamedir = gameDir):
@@ -74,12 +80,13 @@ while True:
 				time.sleep(refreshRate*60)
 			continue
 
-	if (totalPlayers >= minPlayers) & (totalPlayers != lastPlayers):
-		lastPlayers = totalPlayers
-		notifyPlayers.update( str(totalPlayers) + " online")
-		notifyPlayers.show()
-		totalPlayers = 0
-	else: 
+		if (totalPlayers >= minPlayers) & (totalPlayers != lastPlayers):
+			lastPlayers = totalPlayers
+			notifyPlayers.update( str(totalPlayers) + " online")
+			notifyPlayers.show()
+			totalPlayers = 0
+	else:
+		#print("playing")
 		pass
 
 	time.sleep(refreshRate*60)	# convert refreshRate to seconds and sleep.
