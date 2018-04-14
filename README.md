@@ -1,9 +1,9 @@
 # Valve Player Query
-This python script will show notifications of increasing online player count for multiplayer games hosted with the valve master server. This is only useful for games with a low player count that have sporadic activity; you can be informed when people are playing without leaving the game running or needing to check a website.
+This python script will show notifications of increasing online player count for multiplayer games hosted with the valve master server. This is useful for games with a low player count that have sporadic activity; you can be informed when and how many people are playing without leaving the game running or needing to check a website.
 
 ## Usage for Linux
 ### Dependencies
-You will specifically need [libnotify], [python-valve], and [psutil]. The other modules should come with a default python install:
+You will specifically need [libnotify], [python-valve], and [psutil]. The other modules that are used should come with a default python install:
 ```
 sudo pacman -S libnotify (use your distro's package manager)
 sudo pip install python-valve
@@ -19,10 +19,10 @@ Basic usage:
 `<refreshRate>`   Minutes before querying the master server again  
 `<retries>`       Number of times to retry connecting to the master server on timeout  
 
-Optionally you may place a small image called <gamedir>.png in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
+Optionally you may place a small image called "&lt;gamedir&gt;.png" in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
 
 ### Example
-Demonstrating "daemonized" usage for Fistful of Frags:
+Demonstrating "daemonized" usage for Fistful of Frags where we are only alerted if the current player count exceeds 20, the player count is retrieved on a 10 minute cycle, and if our initial query fails we try again 3 times before waiting for the next cycle:
 
 `setsid python valvePlayerQuery.py fof 20 10 3 >/dev/null 2>&1`
 
@@ -32,6 +32,6 @@ Everything besides the notification library is cross-platform. The notification 
 ## License
 This repository is licensed under the [MIT License](LICENSE)
 
-[python-valve]: (https://github.com/serverstf/python-valve)
-[psutil]: (https://github.com/giampaolo/psutil)
-[libnotify]: (https://wiki.archlinux.org/index.php/Desktop_notifications#Libnotify)
+[python-valve]: https://github.com/serverstf/python-valve
+[psutil]: https://github.com/giampaolo/psutil
+[libnotify]: https://wiki.archlinux.org/index.php/Desktop_notifications#Libnotify
