@@ -19,7 +19,7 @@ Basic usage:
 `<refreshRate>`   Minutes before querying the master server again  
 `<retries>`       Number of times to retry connecting to the master server on timeout  
 
-Optionally you may place a small image called "<gamedir>.png" in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
+Optionally you may place a small image called "&lt;gamedir&gt;.png" in the same location as the script. This image will appear on the notification, allowing you to easily identify different notifications for different games.
 
 ### Example
 Demonstrating "daemonized" usage for Fistful of Frags where we are only alerted if the current player count exceeds 20, the player count is retrieved on a 10 minute cycle, and if our initial query fails we try again 3 times before waiting for the next cycle:
