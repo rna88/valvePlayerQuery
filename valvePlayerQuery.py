@@ -37,16 +37,12 @@ notifyTimeout = Notify.Notification.new("Timeout")
 # Use a custom image for the notifications if we find one. 
 if os.path.isfile(gameDir+".png"):
 	image = GdkPixbuf.Pixbuf.new_from_file(gameDir+".png")
-	notifyPlayers.set_icon_from_pixbuf(image)
-	notifyPlayers.set_image_from_pixbuf(image)
-	notifyTimeout.set_icon_from_pixbuf(image)
-	notifyTimeout.set_image_from_pixbuf(image)
 else:
 	image = GdkPixbuf.Pixbuf.new_from_file("default.png")
-	notifyPlayers.set_icon_from_pixbuf(image)
-	notifyPlayers.set_image_from_pixbuf(image)
-	notifyTimeout.set_icon_from_pixbuf(image)
-	notifyTimeout.set_image_from_pixbuf(image)
+notifyPlayers.set_icon_from_pixbuf(image)
+notifyPlayers.set_image_from_pixbuf(image)
+notifyTimeout.set_icon_from_pixbuf(image)
+notifyTimeout.set_image_from_pixbuf(image)
 
 totalPlayers = 0
 lastPlayers = 0
